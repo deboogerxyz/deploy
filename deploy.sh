@@ -72,9 +72,12 @@ adduser() { \
 # Install dotfiles
 installdotfiles() { \
 	dialog --infobox "Installing dotfiles..." 4 50
-	git clone --recursive -b "$dotbranch" --depth 1 --recurse-submodules "$dotrepo" /home/$name >/dev/null 2>&1
+	dir=$(mktemp -d)
+	[ ! -d "/home/$name" ] && mkdir -p "/home/$name"
+	chown "$name":wheel "$dir" "/home/$name"
+	sudo -u "$name" git clone --recursive -b "$dotbranch" --depth 1 --recurse-submodules "$dotrepo" "$dir" >/dev/null 2>&1
+	sudo -u "$name" cp -rfT "$dir" "/home/$name"
 	rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
-	# Make git ignore deleted files
 	git update-index --assume-unchanged "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 	}
 
