@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Packages to install by pacman and AUR helper
-pkgs="dialog curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf"
+pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting"
 shell="zsh"
 
@@ -91,6 +91,9 @@ setshell() { \
 	installaurpkg "$1"
 	chsh -s "/bin/$1" "$name" >/dev/null 2>&1
 	}
+
+# Install dialog for GUI
+pacman --noconfirm --needed -Sy dialog
 
 getuser
 checkuser
