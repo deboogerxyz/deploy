@@ -5,6 +5,8 @@ It can be run on a fresh installation of Arch or Artix.
 
 ## Installation
 
+Run the following as root:
+
 ```
 curl -LO https://raw.githubusercontent.com/deboogerxyz/deploy/main/deploy.sh
 sh deploy.sh
