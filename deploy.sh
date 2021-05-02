@@ -6,7 +6,7 @@ aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting"
 shell="zsh"
 
 dotrepo="https://github.com/deboogerxyz/dotfiles.git"
-dotbranch="master"
+dotbranch="main"
 aurhelper="paru"
 
 # Functions responsible for installing packages
@@ -78,7 +78,6 @@ installdotfiles() { \
 	sudo -u "$name" git clone --recursive -b "$dotbranch" --depth 1 --recurse-submodules "$dotrepo" "$dir" >/dev/null 2>&1
 	sudo -u "$name" cp -rfT "$dir" "/home/$name"
 	rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
-	git update-index --assume-unchanged "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 	}
 
 # Disable beep sound
