@@ -114,6 +114,9 @@ disablebeep
 grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf
 grep -q "ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 
+# Make paru look better
+[ -f /etc/paru.conf ] && grep -q "#BottomUp" /etc/paru.conf && sed -i "s/#BottomUp/BottomUp/" /etc/paru.conf
+
 # Tap to click
 [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"
         Identifier "libinput touchpad catchall"
