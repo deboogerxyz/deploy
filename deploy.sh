@@ -98,6 +98,9 @@ pacman --noconfirm --needed -Sy dialog
 getuser
 checkuser
 
+# Use all cores for compilation
+sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
+
 refreshkeyring
 updatesystem
 installaurhelper
@@ -107,6 +110,9 @@ for x in ${pkgs}; do
 	dialog --title "Installing package..." --infobox "Installing \`$x\` package..." 5 70
 	installpkg "$x"
 done
+
+# Allow users to use sudo
+[ -f /etc/sudoers ] && grep -q "# %wheel ALL=(ALL) ALL" /etc/sudoers && sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
 
 adduser
 installdotfiles
