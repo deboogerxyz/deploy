@@ -1,12 +1,13 @@
 #!/bin/sh
 
-# Packages to install by pacman and AUR helper
+# Programs to install
 pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting"
+gitmakeprogs="https://github.com/deboogerxyz/dwm.git"
 shell="zsh"
 
 dotrepo="https://github.com/deboogerxyz/dotfiles.git"
-dotbranch="main"
+dotbranch="master"
 aurhelper="paru"
 
 # Functions responsible for installing packages
@@ -65,6 +66,7 @@ adduser() { \
 	dialog --infobox "Adding user \`$name\`..." 4 50
 	useradd -m -g wheel -s /bin/zsh "$name" >/dev/null 2>&1 ||
 	usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
+	repodir="/home/$name/.local/src"; mkdir -p "$repodir"; chown -R "$name":wheel "$(dirname "$repodir")"
 	echo "$name:$pass1" | chpasswd
 	unset pass1 pass2
 	}
@@ -78,6 +80,17 @@ installdotfiles() { \
 	sudo -u "$name" git clone --recursive -b "$dotbranch" --depth 1 --recurse-submodules "$dotrepo" "$dir" >/dev/null 2>&1
 	sudo -u "$name" cp -rfT "$dir" "/home/$name"
 	rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
+	}
+
+gitmakeinstall() {
+	progname="$(basename "$1" .git)"
+	dir="$repodir/$progname"
+	rm -rf "$dir"
+	sudo -u "$name" git clone --depth 1 "$1" "$dir" >/dev/null 2>&1 || { cd "$dir" || return 1 ; sudo -u "$name" git pull --force origin master;}
+	cd "$dir" || exit 1
+	make >/dev/null 2>&1
+	make install >/dev/null 2>&1
+	cd /tmp || return 1
 	}
 
 # Disable beep sound
@@ -145,4 +158,10 @@ killall pulseaudio; sudo -u "$USER" pulseaudio --start
 for x in ${aurpkgs}; do
 	dialog --title "Installing AUR package..." --infobox "Installing \`$x\` package from AUR..." 5 70
 	installaurpkg "$x"
+done
+
+# Install programs via git and make
+for x in ${gitmakeprogs}; do
+	dialog --title "Installing programs..." --infobox "Installing \`$x\` via \`git\` and \`make\`..." 5 70
+	gitmakeinstall "$x"
 done
