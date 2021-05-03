@@ -106,7 +106,7 @@ setshell() { \
 	}
 
 # Install dialog for GUI
-pacman --noconfirm --needed -Sy dialog
+[ ! -x "$(command -v dialog)" ] && pacman --noconfirm --needed -Sy dialog
 
 getuser
 checkuser
