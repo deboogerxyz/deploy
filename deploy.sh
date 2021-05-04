@@ -121,6 +121,7 @@ updatesystem
 [ ! -x "$(command -v $aurhelper)" ] && installaurhelper
 
 # Install packages with pacman
+unset n
 for x in ${pkgs}; do
 	total=$(echo $pkgs | wc -w)
 	n=$((n+1))
@@ -159,6 +160,7 @@ EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 killall pulseaudio; sudo -u "$user" pulseaudio --start
 
 # Install AUR packages
+unset n
 for x in ${aurpkgs}; do
 	total=$(echo $aurpkgs | wc -w)
 	n=$((n+1))
@@ -167,6 +169,7 @@ for x in ${aurpkgs}; do
 done
 
 # Install programs via git and make
+unset n
 for x in ${gitmakeprogs}; do
 	total=$(echo $gitmakeprogs | wc -w)
 	n=$((n+1))
