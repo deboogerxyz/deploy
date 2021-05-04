@@ -101,6 +101,7 @@ disablebeep() { \
 
 # Install and set the default shell
 setshell() { \
+	dialog --title "Installing user shell..." --infobox "Installing and setting \`$x\` as default user shell..." 5 70
 	installaurpkg "$1"
 	chsh -s "/bin/$1" "$name" >/dev/null 2>&1
 	}
@@ -127,6 +128,24 @@ for x in ${pkgs}; do
 	n=$((n+1))
 	dialog --title "Installing package..." --infobox "Installing \`$x\` ($n of $total) package..." 5 70
 	installpkg "$x"
+done
+
+# Install AUR packages
+unset n
+for x in ${aurpkgs}; do
+	total=$(echo $aurpkgs | wc -w)
+	n=$((n+1))
+	dialog --title "Installing AUR package..." --infobox "Installing \`$x\` ($n of $total) package from AUR..." 5 70
+	installaurpkg "$x"
+done
+
+# Install programs via git and make
+unset n
+for x in ${gitmakeprogs}; do
+	total=$(echo $gitmakeprogs | wc -w)
+	n=$((n+1))
+	dialog --title "Installing programs..." --infobox "Installing \`$x\` ($n of $total) via \`git\` and \`make\`..." 5 70
+	gitmakeinstall "$x"
 done
 
 # Allow users to use sudo
@@ -157,22 +176,4 @@ EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 [ ! -f /etc/udev/rules.d/10-trackpoint.rules ] && printf 'ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="TPPS/2 IBM TrackPoint", ATTR{device/drift_time}="25", ATTR{device/sensitivity}="200"' > /etc/udev/rules.d/10-trackpoint.rules
 
 # Start/restart PulseAudio.
-killall pulseaudio; sudo -u "$user" pulseaudio --start
-
-# Install AUR packages
-unset n
-for x in ${aurpkgs}; do
-	total=$(echo $aurpkgs | wc -w)
-	n=$((n+1))
-	dialog --title "Installing AUR package..." --infobox "Installing \`$x\` ($n of $total) package from AUR..." 5 70
-	installaurpkg "$x"
-done
-
-# Install programs via git and make
-unset n
-for x in ${gitmakeprogs}; do
-	total=$(echo $gitmakeprogs | wc -w)
-	n=$((n+1))
-	dialog --title "Installing programs..." --infobox "Installing \`$x\` ($n of $total) via \`git\` and \`make\`..." 5 70
-	gitmakeinstall "$x"
-done
+killall pulseaudio; sudo -u "$name" pulseaudio --start
