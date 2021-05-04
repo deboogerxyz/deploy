@@ -5,7 +5,7 @@ pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio
 shell="zsh"
 aurhelper="paru"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting nerd-fonts-source-code-pro"
-gitmakeprogs="https://github.com/deboogerxyz/dwm.git"
+gitmakeprogs="https://github.com/deboogerxyz/dwm.git https://github.com/deboogerxyz/dmenu.git"
 dotrepo="https://github.com/deboogerxyz/dotfiles.git"
 dotbranch="master"
 
