@@ -89,6 +89,7 @@ gitmakeinstall() {
 	cd "$dir" || exit 1
 	make >/dev/null 2>&1
 	make install >/dev/null 2>&1
+	make clean >/dev/null 2>&1
 	cd /tmp || return 1
 	}
 
