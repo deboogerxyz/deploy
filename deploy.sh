@@ -2,13 +2,12 @@
 
 # Programs to install
 pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf ttf-joypixels"
+shell="zsh"
+aurhelper="paru"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting nerd-fonts-source-code-pro"
 gitmakeprogs="https://github.com/deboogerxyz/dwm.git"
-shell="zsh"
-
 dotrepo="https://github.com/deboogerxyz/dotfiles.git"
 dotbranch="master"
-aurhelper="paru"
 
 # Functions responsible for installing packages
 installpkg() { \
@@ -130,6 +129,11 @@ for x in ${pkgs}; do
 	installpkg "$x"
 done
 
+adduser
+installdotfiles
+setshell "$shell"
+disablebeep
+
 # Install AUR packages
 unset n
 for x in ${aurpkgs}; do
@@ -148,13 +152,9 @@ for x in ${gitmakeprogs}; do
 	gitmakeinstall "$x"
 done
 
+
 # Allow users to use sudo
 [ -f /etc/sudoers ] && grep -q "# %wheel ALL=(ALL) ALL" /etc/sudoers && sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
-
-adduser
-installdotfiles
-setshell "$shell"
-disablebeep
 
 # Make pacman look better
 grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf
