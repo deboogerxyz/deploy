@@ -120,7 +120,9 @@ installaurhelper
 
 # Install packages with pacman
 for x in ${pkgs}; do
-	dialog --title "Installing package..." --infobox "Installing \`$x\` package..." 5 70
+	total=$(echo $pkgs | wc -w)
+	n=$((n+1))
+	dialog --title "Installing package..." --infobox "Installing \`$x\` ($n of $total) package..." 5 70
 	installpkg "$x"
 done
 
@@ -156,12 +158,16 @@ killall pulseaudio; sudo -u "$USER" pulseaudio --start
 
 # Install AUR packages
 for x in ${aurpkgs}; do
-	dialog --title "Installing AUR package..." --infobox "Installing \`$x\` package from AUR..." 5 70
+	total=$(echo $aurpkgs | wc -w)
+	n=$((n+1))
+	dialog --title "Installing AUR package..." --infobox "Installing \`$x\` ($n of $total) package from AUR..." 5 70
 	installaurpkg "$x"
 done
 
 # Install programs via git and make
 for x in ${gitmakeprogs}; do
-	dialog --title "Installing programs..." --infobox "Installing \`$x\` via \`git\` and \`make\`..." 5 70
+	total=$(echo $gitmakeprogs | wc -w)
+	n=$((n+1))
+	dialog --title "Installing programs..." --infobox "Installing \`$x\` ($n of $total) via \`git\` and \`make\`..." 5 70
 	gitmakeinstall "$x"
 done
