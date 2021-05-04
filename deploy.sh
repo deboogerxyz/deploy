@@ -116,7 +116,9 @@ sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
 
 refreshkeyring
 updatesystem
-installaurhelper
+
+# Install the AUR helper if not already installed
+[ ! -x "$(command -v $aurhelper)" ] && installaurhelper
 
 # Install packages with pacman
 for x in ${pkgs}; do
