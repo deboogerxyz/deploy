@@ -8,7 +8,7 @@ It can be run on a fresh installation of Arch or Artix.
 Run the following as root:
 
 ```
-curl -LO https://raw.githubusercontent.com/deboogerxyz/deploy/main/deploy.sh
+curl -LO https://raw.githubusercontent.com/deboogerxyz/deploy/master/deploy.sh
 sh deploy.sh
 ```
 
