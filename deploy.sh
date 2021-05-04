@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Programs to install
-pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf"
+pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf ttf-joypixels"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting nerd-fonts-source-code-pro"
 gitmakeprogs="https://github.com/deboogerxyz/dwm.git"
 shell="zsh"
