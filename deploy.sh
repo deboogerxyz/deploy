@@ -35,8 +35,8 @@ updatesystem() { \
 installaurhelper() {
 	dialog --infobox "Installing \`$aurhelper\` AUR helper..." 5 40
 	cd /tmp
-	rm -rf /tmp/"$aurhelper"
-	git clone https://aur.archlinux.org/"$aurhelper".git || exit 1
+	rm -rf /tmp/"$aurhelper" >/dev/null 2>&1
+	git clone https://aur.archlinux.org/"$aurhelper".git >/dev/null 2>&1 || exit 1
 	cd /tmp/"$aurhelper"
 	sudo -u "$name" makepkg --noconfirm -si >/dev/null 2>&1
 	cd /tmp
@@ -95,7 +95,7 @@ gitmakeinstall() {
 
 # Disable beep sound
 disablebeep() { \
-	rmmod pcspkr
+	rmmod pcspkr >/dev/null 2>&1
 	echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 	}
 
