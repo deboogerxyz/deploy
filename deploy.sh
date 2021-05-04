@@ -154,7 +154,7 @@ EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 [ ! -f /etc/udev/rules.d/10-trackpoint.rules ] && printf 'ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="TPPS/2 IBM TrackPoint", ATTR{device/drift_time}="25", ATTR{device/sensitivity}="200"' > /etc/udev/rules.d/10-trackpoint.rules
 
 # Start/restart PulseAudio.
-killall pulseaudio; sudo -u "$USER" pulseaudio --start
+killall pulseaudio; sudo -u "$user" pulseaudio --start
 
 # Install AUR packages
 for x in ${aurpkgs}; do
