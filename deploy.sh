@@ -79,6 +79,7 @@ installdotfiles() { \
 	sudo -u "$name" git clone --recursive -b "$dotbranch" --depth 1 --recurse-submodules "$dotrepo" "$dir" >/dev/null 2>&1
 	sudo -u "$name" cp -rfT "$dir" "/home/$name"
 	rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
+	rm -rf "/home/$name/.git"
 	}
 
 gitmakeinstall() {
