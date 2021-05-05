@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Programs to install
-pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf ttf-joypixels gcr webkit2gtk gst-libav gst-plugins-good xautolock"
+pkgs="curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio xorg xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf ttf-joypixels gcr webkit2gtk gst-libav gst-plugins-good xautolock dunst"
 shell="zsh"
 aurhelper="paru"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting nerd-fonts-source-code-pro libxft-bgra"
