@@ -15,7 +15,7 @@ installpkg() { \
 	}
 
 installaurpkg() { \
-	"$aurhelper" --noconfirm --needed -S "$1" >/dev/null 2>&1
+	sudo -u "$name" "$aurhelper" --noconfirm --needed -S "$1" >/dev/null 2>&1
 	}
 
 # Refresh Arch and Artix keyring
