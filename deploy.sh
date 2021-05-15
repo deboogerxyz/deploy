@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Programs to install
-pkgs="man-db curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio pulsemixer pulseaudio-alsa xorg-server xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf ttf-joypixels gcr webkit2gtk gst-libav gst-plugins-good dunst xwallpaper ttf-linux-libertine libnotify dosfstools exfat-utils ntfs-3g xssstate python-pywal mpd mpc"
+pkgs="man-db curl base-devel git dash neovim scrot xclip zsh-autosuggestions pulseaudio pulsemixer pulseaudio-alsa xorg-server xorg-xinit unclutter mpv sxiv zathura-pdf-mupdf ttf-joypixels gcr webkit2gtk gst-libav gst-plugins-good dunst xwallpaper ttf-linux-libertine libnotify dosfstools exfat-utils ntfs-3g xssstate python-pywal mpd mpc pamixer"
 shell="zsh"
 aurhelper="paru"
 aurpkgs="dashbinsh lf picom-git brave-bin zsh-fast-syntax-highlighting nerd-fonts-source-code-pro libxft-bgra simple-mtpfs mutt-wizard-git htop-vim-git"
