@@ -1,4 +1,4 @@
-# deploy
+# deploy (switching to Gentoo soon ;c)
 
 A script that automatically deploys a fully-functioning Arch-based GNU/Linux system.
 It can be run on a fresh installation of Arch or Artix.
